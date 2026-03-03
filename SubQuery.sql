@@ -34,5 +34,18 @@ where customer_id in
 		customer_id
 	from payment
 	group by customer_id
+	having count(*) > 40);
+    
+    select 
+	first_name,
+    last_name,
+    email
+from customer 
+where customer_id = any
+	(select 
+		customer_id
+	from payment
+	group by customer_id
 	having count(*) > 40)
+
 
